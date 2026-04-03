@@ -1,6 +1,10 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <array>
+
+using namespace std;
 
 namespace Aluno
 {
