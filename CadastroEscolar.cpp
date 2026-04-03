@@ -13,14 +13,14 @@ using namespace std;
 #define Red       4 // Vermelho
 #define lgray     7 // Cinza Claro
 
-struct CadAluno {
+struct Aluno {
     string Nome;
     array<float, 4> Notas;
     float Media;
     string situacao;
 };
 
-bool CompareNome(const CadAluno &a, const CadAluno &b) 
+bool CompareNome(const Aluno &a, const Aluno &b) 
 {
   return a.Nome < b.Nome;
 }
@@ -51,7 +51,7 @@ void clear(void) {
 }
 
 int main(void) {
-    vector<CadAluno> Alunos(30);
+    vector<Aluno> Alunos(30);
     float min, soma_media, soma_nota, media_geral;
     char opcao = 's';
     uint32_t Sala;
