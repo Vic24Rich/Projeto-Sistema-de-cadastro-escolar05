@@ -14,6 +14,15 @@ namespace Aluno
         std::string nome;
         float media;
         u_int faltas;
+
+        void dados()
+        {
+            cout << "Matricula: " << matricula << 
+                    "\nNome: " << nome <<
+                    "\nMedia: " << media <<
+                    "\nFaltas: " << faltas <<
+                    '\n';
+        }
     };
 
     std::vector<Aluno> db_alunos;
