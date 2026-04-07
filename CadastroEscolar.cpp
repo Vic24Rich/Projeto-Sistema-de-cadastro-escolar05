@@ -29,7 +29,7 @@ void color(int corFundo, int corTexto) {
   HANDLE tela;
   int16_t cor;
   tela = GetStdHandle(STD_OUTPUT_HANDLE);
-  if (corFundo < 0 or corFundo > 15 or corTexto < 0 or
+  if (corFundo < 0 || corFundo > 15 || corTexto < 0 ||
     corTexto > 15)
     cor = 15;
   else
@@ -59,7 +59,7 @@ int main(void) {
     cout << setprecision(2) << fixed << right;
 
     // looping principal
-    while (opcao != 'n' or 'N') {		
+    while (opcao != 'n' || 'N') {		
         cout << "Media da Sala" << endl;
         cout << string(80, '-') << endl;
 
@@ -69,7 +69,7 @@ int main(void) {
         cin >> Sala;
         cin.ignore(80, '\n');
 
-        if (Sala < 1 or Sala > 100) {
+        if (Sala < 1 || Sala > 100) {
             cout << "Valor invalido, sera usado o padrao 30 alunos" << endl;
             Sala = 30;
         }
@@ -80,7 +80,7 @@ int main(void) {
         cin >> min;
         cin.ignore(80, '\n');
 
-        if (min < 0.0 and min > 10.0) {
+        if (min < 0.0 && min > 10.0) {
             cout << "Valor invalido, sera usado o padrao 5" << endl;
             min = 5.00;
         }
@@ -169,7 +169,7 @@ int main(void) {
         cout << "Deseja calcular outra classe (S/N)? ";
         cin.get(opcao);
         cin.ignore(80, '\n');
-        if (opcao == 's' or 'S')
+        if (opcao == 's' || opcao == 'S')
             clear();
     }
 

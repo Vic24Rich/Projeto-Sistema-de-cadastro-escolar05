@@ -29,6 +29,18 @@ struct CadAluno {
     string situacao;
 };
 
+void color(int corFundo, int corTexto) {
+  HANDLE tela;
+  int16_t cor;
+  tela = GetStdHandle(STD_OUTPUT_HANDLE);
+  if (corFundo < 0 || corFundo > 15 || corTexto < 0 ||
+    corTexto > 15)
+    cor = 15;
+  else
+    cor = corTexto + corFundo * 16;
+  SetConsoleTextAttribute(tela, cor);
+}
+
 // para fazer a busca binaria, os alunos precisam estar ordenados por id
 // irei usar o QuickSort para ordenar os alunos que usa um pivot para dividir o vetor 
 // em partes menores e ordenar cada parte recursivamente
@@ -96,12 +108,19 @@ void faltaAlunos(vector<CadAluno>& alunos, int totalAulas){
         else
             aluno.situacao = "Aprovado";
     }
+
     quickSort(alunos, 0, alunos.size() - 1);
+
     // laçõ de exibição
     for(const auto& aluno : alunos){
         cout << "ID: " << aluno.id 
-             << ", Nome: " << aluno.Nome 
-             << ", Faltas: " << aluno.Faltas 
-             << ", Situação: " << aluno.situacao << endl;
+             << ", Nome: " << aluno.Nome;
+        if (aluno.situacao == "Reprovado por faltas")
+            color(4, 0);// letra vermelho fundo preto
+        else
+            color(2, 0); //letra verde fundo preto
+        cout << ", Faltas: " << aluno.Faltas 
+            << ", Situação: " << aluno.situacao << endl;
+        color(0, 7); // padrão
     }
 }
