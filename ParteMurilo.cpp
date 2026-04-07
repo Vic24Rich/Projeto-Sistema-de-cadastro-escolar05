@@ -25,13 +25,20 @@ struct CadAluno {
     string Nome;
     array<float, 4> Notas;
     float Media;
+    int Faltas;
     string situacao;
 };
 
 // para fazer a busca binaria, os alunos precisam estar ordenados por id
-// irei usar o QuickSort para ordenar os alunos que usa um pivot para dividir o vetor em partes menores e ordenar cada parte recursivamente
+// irei usar o QuickSort para ordenar os alunos que usa um pivot para dividir o vetor 
+// em partes menores e ordenar cada parte recursivamente
 
 int partition(vector<CadAluno>& alunos, int low, int high){
+    // a escolha de um pivot aleatorio veio de um conselho de um professor
+    // ele serve para evitar que no pior caso ele tenha tempo de O(n²) e passe a ter
+    // um tempo constante de O(n log n)
+    int randomIndex = low + rand() % (high - low + 1);
+    swap(alunos[randomIndex], alunos[high]);
     int pivot = alunos[high].id;
     int i = low - 1;
 
@@ -75,3 +82,26 @@ int buscaAluno(vector<CadAluno>& alunos, int id){
     return -1; // se não for encontrado returna -1, PRECISA SER TRATADO NA MAIN
 }
 
+// tabela de faltas ordenada por quantidade de faltas
+// irei reaproveitar a função quickSort para ordenar os alunos
+
+// implementando a variavel totalAulas pois não sei se o numero de aulas é fixo
+// PODE HAVER ALTERAÇÕES
+void faltaAlunos(vector<CadAluno>& alunos, int totalAulas){
+    for (auto& aluno : alunos){
+        float porcentagemFaltas = (static_cast<float>(aluno.Faltas) / totalAulas) * 100;
+
+        if (porcentagemFaltas > 25.0f)
+            aluno.situacao = "Reprovado por faltas";
+        else
+            aluno.situacao = "Aprovado";
+    }
+    quickSort(alunos, 0, alunos.size() - 1);
+    // laçõ de exibição
+    for(const auto& aluno : alunos){
+        cout << "ID: " << aluno.id 
+             << ", Nome: " << aluno.Nome 
+             << ", Faltas: " << aluno.Faltas 
+             << ", Situação: " << aluno.situacao << endl;
+    }
+}
