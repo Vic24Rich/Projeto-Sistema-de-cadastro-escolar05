@@ -106,7 +106,7 @@ void faltaAlunos(vector<CadAluno>& alunos, int totalAulas){
         if (porcentagemFaltas > 25.0f)
             aluno.situacao = "Reprovado por faltas";
         else
-            aluno.situacao = "Aprovado";
+            aluno.situacao = "Dentro do limite";
     }
 
     quickSort(alunos, 0, alunos.size() - 1);
