@@ -4,6 +4,7 @@
 #include <vector>
 #include "Aluno.h"
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -27,16 +28,33 @@ int divisao2(vector<Aluno> &aluno, int menor, int maior)
     return (i + 1);
 }
 
-void filtrarPorMedia(vector<Aluno> &aluno, int menor, int maior)
+void ordenarPorMedia(vector<Aluno> &aluno, int menor, int maior)
 {
     if (menor < maior)
     {
         int faltaparte = divisao2(aluno, menor, maior);
 
         // Recursão para as duas metades
-        filtrarPorMedia(aluno, menor, faltaparte - 1);
-        filtrarPorMedia(aluno, faltaparte + 1, maior);
+        ordenarPorMedia(aluno, menor, faltaparte - 1);
+        ordenarPorMedia(aluno, faltaparte + 1, maior);
     }
+}
+
+void filtrarPorMedia(vector<Aluno> &alunos){
+
+    if (alunos.empty()) {
+        cout << "Nenhum aluno cadastrado.\n";
+        return;
+    }
+
+    ordenarPorMedia(alunos, 0, alunos.size() - 1);
+
+    cout << "\n========== RELATORIO DE MEDIA ==========\n";
+    cout << left << setw(6)  << "ID"
+         << setw(25) << "Nome"
+         << setw(10) << "Media"
+         << "Situacao\n";
+    cout << "-------------------------------------------\n";
 }
 
 #endif // FILTRARPORMEDIA_H
