@@ -66,11 +66,11 @@ void filtrarPorMedia(vector<Aluno> &alunos){
 
         if (reprovadoPorMedia) {
             color(Black, Red);   // fundo preto, texto vermelho
-            cout << setw(10) << aluno.faltas;
+            cout << setw(10) << aluno.media;
             color(Black, lgray); // volta à cor padrão (cinza claro)
         } else {
             color(Black, Green);
-            cout << setw(10) << aluno.faltas;
+            cout << setw(10) << aluno.media;
             color(Black, lgray);
         }
 
