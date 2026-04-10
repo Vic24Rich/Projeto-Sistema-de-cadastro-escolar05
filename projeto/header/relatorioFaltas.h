@@ -105,7 +105,9 @@ void filtrarPorFalta(vector<Aluno>& alunos) {
 
         // Exibe situação
         if (reprovadoPorFaltas) {
+            color(Black, Red);   // fundo preto, texto vermelho
             cout << "Reprovado por faltas\n";
+            color(Black, lgray);
         } else {
             cout << "Cursando\n";
         }
